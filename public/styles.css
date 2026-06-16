@@ -1,0 +1,217 @@
+/* Minimalist Dark Theme with Smooth Animations */
+:root {
+    --bg-color: #0b0f19;
+    --card-bg: #151d30;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --border-color: #24324f;
+    --success: #10b981;
+}
+
+/* Keyframes for smooth entry animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container Fade-In */
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    letter-spacing: -0.05em;
+    background: linear-gradient(to right, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.find-me, .find-them {
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Form Inputs with Transition */
+input[type="text"] {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* Animated Interactive Buttons */
+button {
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.find-me {
+    background-color: var(--accent);
+    color: white;
+    width: 100%;
+}
+
+button.find-me:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+button.find-me:active {
+    transform: translateY(1px);
+}
+
+button.map-me {
+    background-color: var(--success);
+    color: white;
+    width: 100%;
+    /* Adds a subtle entry glow attention grabber when it appears */
+    animation: pulseGlow 2s infinite;
+}
+
+button.map-me:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+button.map-me:active {
+    transform: translateY(1px);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 2rem 0;
+}
+
+/* Data Output Reveal Animation */
+.info {
+    background-color: rgba(59, 130, 246, 0.05);
+    border: 1px dashed var(--accent);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    /* Animates entry when geolocation returns data */
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+}
+
+.info h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.info p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.info strong {
+    color: var(--text-main);
+}
+
+/* Map Frame Reveal Animation */
+.map-box {
+    margin-top: 2rem;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+}
+
+.map-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease;
+}
+
+.map-wrapper:hover {
+    transform: scale(1.01); /* Subtle zoom depth effect on hover */
+}
+
+.map-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.3) invert(0.9) hue-rotate(180deg);
+}
